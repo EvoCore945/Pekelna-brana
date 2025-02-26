@@ -1,10 +1,10 @@
-mistnost S J Z V
-Hangár ----> Portálová komora - Sklad paliva - Zbrojnice - Laboratoř
-Sklad paliva ----> Hangár - null - null - null
-Zbrojnice ----> Serverovna - null - Strojovna - Hangár
-Serverovna ----> null - Zbrojnice - null - null
-Strojovna ----> null - Velín - null - Zbrojnice
-Velín ----> Strojovna - null - null - null
-Laboratoř ----> null - Sekce X-07 - Hangár - null
-Sekce X-07 ----> Laboratoř - null - null - null
-Portálová komora ----> null - Hangár - null - null
+ID Název, North, South, East, West
+0, Hangár ----> 8, 1, 4, 6
+1, Sklad paliva ----> 0, -1, -1, -1
+2, Zbrojnice ----> 3, -1, 4, 0
+3, Serverovna ----> -1, 2, -1, -1
+4, Strojovna ----> -1, 5, -1, 2
+5, Velín ----> 4, -1, -1, -1
+6, Laboratoř ----> -1, 7, 0, -1
+7, Sekce X-07 ----> 6, -1, -1, -1
+8, Portálová komora ----> -1, 0, -1, -1
