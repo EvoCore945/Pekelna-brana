@@ -35,7 +35,7 @@ public class Movement  implements Command{
     }
 
     @Override
-    public boolean exist() {
+    public boolean exit() {
         return false;
     }
 
