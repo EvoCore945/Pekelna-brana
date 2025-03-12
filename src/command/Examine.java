@@ -11,7 +11,11 @@ public class Examine implements Command {
     }
 
     public String execute() {
-        return "";
+        if (location == null) {
+            return "Unknown location.";
+        }
+        String description = location.getDescription();
+        return "You are in: " + location.getName() + ". " + description;
     }
 
     public boolean exit() {

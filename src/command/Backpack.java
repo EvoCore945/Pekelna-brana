@@ -1,8 +1,6 @@
 package command;
 
 import World.Item;
-
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Backpack {
@@ -10,16 +8,17 @@ public class Backpack {
     private int capacity;
 
 
-    public Backpack(ArrayList<Item> items, int capacity) {
-        this.items = items;
+    public Backpack(int capacity) {
+        this.items = new ArrayList<Item>();
         this.capacity = capacity;
-
     }
 
     public boolean addItem(Item item) {
+        if (items.size() < capacity) {
             items.add(item);
             return true;
-
+        }
+        return false;
     }
 
     public boolean removeItem(Item item) {
@@ -27,7 +26,7 @@ public class Backpack {
     }
 
     public boolean hasItem(String itemName) {
-        return true;
+        return items.stream().anyMatch(i -> i.getName().equalsIgnoreCase(itemName));
     }
 
     public ArrayList<Item> getItems() {
@@ -38,12 +37,24 @@ public class Backpack {
         return "Item used";
     }
 
+    public String listItems() {
+        if (items.isEmpty()) {
+            return "Backpack is empty.";
+        }
+        StringBuilder itemList = new StringBuilder("Items in Backpack: ");
+        for (Item item : items) {
+            itemList.append(item.getName()).append(", ");
+        }
+        return itemList.toString();
+    }
+
     public boolean isFull() {
-        return true;
+        return items.size() >= capacity;
     }
 
     @Override
     public String toString() {
         return "Inventory: " + items.toString();
     }
+
 }

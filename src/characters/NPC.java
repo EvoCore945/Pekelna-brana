@@ -2,22 +2,19 @@ package characters;
 
 import command.Command;
 
-public class NPC implements Command {
+public class NPC {
 
     private String description;
 
-    public String getDialogue() { return ""; }
-
-    @Override
-    public String execute() {
-        return "";
+    public NPC(String description) {
+        this.description = description;
     }
 
-    @Override
-    public boolean exit() {
-        return false;
+    public String getDialogue() {
+        return "NPC says: " + description;
     }
 }
+
 
 
 

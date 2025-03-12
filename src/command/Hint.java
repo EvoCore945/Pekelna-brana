@@ -8,7 +8,7 @@ public class Hint implements Command {
 
     @Override
     public String execute() {
-        return "";
+        return "Tip: " + location.getHint();
     }
 
     @Override

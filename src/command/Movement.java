@@ -10,7 +10,7 @@ public class Movement  implements Command{
     private Scanner sc = new Scanner(System.in);
     private WorldMap world;
 
-    public Movement(WorldMap world){
+    public Movement(WorldMap world, String s){
         this.world = world;
     }
 

@@ -12,7 +12,10 @@ public class Talk implements Command{
 
     @Override
     public String execute() {
-        return "";
+        if (character == null) return "There is no one to talk to here.";
+
+        String dialogue = character.getDialogue();
+        return (dialogue != null && !dialogue.isEmpty()) ? dialogue : "This character has nothing to say.";
     }
 
     @Override

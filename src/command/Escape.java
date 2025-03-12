@@ -9,14 +9,8 @@ public class Escape implements Command {
 
 
     public String execute() {
-    return "You ran away fro the monster";
+        return Math.random() > 0.5 ? "You have successfully escaped!." : "Escape failed!";
     }
-
-
-    public boolean escape() {
-    return true;
-    }
-
 
     public boolean exit() {
     return true;
