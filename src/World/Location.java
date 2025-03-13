@@ -41,9 +41,7 @@ public class Location {
     public String getDescription() {
         return "You are in: " + name + ". " + (items.isEmpty() ? "There are no items here." : "Items are available in this location.");
     }
-    public String getHint() {
-        return "Try exploring or interacting with the environment.";
-    }
+
     public Item getItemByName(String name) {
         for (Item item : items) {
             if (item.getName().equalsIgnoreCase(name)) {

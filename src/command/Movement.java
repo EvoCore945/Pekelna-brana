@@ -16,21 +16,21 @@ public class Movement  implements Command{
 
     public String execute() {
         Location currentLocation = world.getCurrentPosition();
-        System.out.println("Aktuální lokace: " + currentLocation.getName());
-        System.out.println("Dostupné směry: North (0), South (1), West (2), East (3)");
+        System.out.println("Current location: " + currentLocation.getName());
+        System.out.println("Available directions: North (0), South (1), West (2), East (3)");
         System.out.println("Kam chceš jít? >>");
 
         String direction = sc.nextLine().trim().toLowerCase();
         int directionIndex = getDirectionIndex(direction);
 
         if (directionIndex == -1) {
-            return "Neplatný směr. Použij: 'north', 'south', 'west', nebo 'east'";
+            return "False direction. Use: 'north', 'south', 'west', or 'east'";
         }
         boolean moved = world.move(directionIndex);
         if (moved) {
-            return "Byl jsi přesunut na " + world.getCurrentPosition().getName();
+            return "You were moved to: " + world.getCurrentPosition().getName();
         } else {
-            return "Nelze se přesunout na toto místo.";
+            return "You cannot go in this direction .";
         }
     }
 

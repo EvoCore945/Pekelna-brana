@@ -40,7 +40,7 @@ public class WorldMap {
             }
             return  true;
         } catch (IOException e) {
-            System.out.println("Chyba při načítání z mapy: " + e.getMessage());
+            System.out.println("Error while loading the map: " + e.getMessage());
            return  false;
         }
     }

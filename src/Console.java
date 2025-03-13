@@ -1,10 +1,8 @@
 
 import World.Item;
 import World.WorldMap;
-import characters.Monster;
 import characters.NPC;
 import characters.Player;
-import command.*;
 import command.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,19 +26,19 @@ public class Console {
         WorldMap worldMap = WorldMap.getInstance();
         NPC npc = new NPC("");
 
-        commands.put("explore", new Examine(worldMap.getCurrentPosition()));
+        commands.put("examine", new Examine(worldMap.getCurrentPosition()));
         commands.put("shoot", new Shoot(player));
         commands.put("pick up", new PickUp(new Item("", "", true), player.getBackpack()));
         commands.put("put down", new PutDown(new Item("", "", true), player.getBackpack()));
         commands.put("talk", new Talk(npc));
-        commands.put("hint", new Hint(worldMap.getCurrentPosition()));
+        commands.put("hint", new Hint());
         commands.put("use", new Use(new Item("","",true)));
         commands.put("go", new Movement(worldMap, ""));
     }
 
     public void startGame() {
         System.out.println("Welcome to The Pekelna Brana!");
-        System.out.println("Type 'help' to see available commands.");
+        System.out.println("Type 'hint' to see available commands.");
 
         boolean running = true;
         while (running) {
@@ -70,7 +68,7 @@ public class Console {
         } else if (commands.containsKey(command)) {
             return commands.get(command).execute();
         }
-        return "Unknown command. Type 'help' to see available commands.";
+        return "Unknown command. Type 'hint' to see available commands.";
     }
 
     private void printMessage(String message) {
