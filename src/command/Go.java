@@ -2,18 +2,21 @@ package command;
 
 import World.WorldMap;
 
+import java.util.Scanner;
+
 public class Go implements Command {
 
-    private WorldMap worldMap;
+    private WorldMap worldMap = new WorldMap();
     private int direction;
+    Scanner sc = new Scanner(System.in);
 
     public String execute() {
-       return worldMap.move(direction)? "You have moved succesfully. " : "You cant go there.";
-    }
+        System.out.println("Where do you want to go?");
+        String direction = sc.next();
 
-    public Go(WorldMap worldMap, int direction) {
-        this.worldMap = worldMap;
-        this.direction = direction;
+        direction = direction.toLowerCase();
+        System.out.println(worldMap.move(direction));
+        return "Moved to " + direction;
     }
 
     @Override

@@ -22,4 +22,3 @@ public class Use implements Command{
         return false;
     }
 }
-

@@ -5,9 +5,9 @@ import World.WorldMap;
 
 import java.util.Scanner;
 
-public class Movement  implements Command{
+public class Movement {
 
-    private Scanner sc = new Scanner(System.in);
+  /*  private Scanner sc = new Scanner(System.in);
     private WorldMap world;
 
     public Movement(WorldMap world, String s){
@@ -54,7 +54,7 @@ public class Movement  implements Command{
                     return -1;
             }
         }
-
+*/
         }
 
 

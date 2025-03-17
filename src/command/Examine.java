@@ -14,8 +14,8 @@ public class Examine implements Command {
         if (location == null) {
             return "Unknown location.";
         }
-        String description = location.getDescription();
-        return "You are in: " + location.getName() + ". " + description;
+       // String description = location.getDescription();
+        return "You are in: " + location.getName() + ". ";
     }
 
     public boolean exit() {

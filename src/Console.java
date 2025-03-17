@@ -10,20 +10,19 @@ import java.util.Scanner;
 
 public class Console {
 
-    private Scanner scanner;
-    private Map<String, Command> commands;
+    private Scanner sc;
+    private boolean exit = false;
+    private Map<String, Command> commands = new HashMap<String, Command>();
+    public static String CommandsFile = "commands.txt";
 
     public Console() {
-        this.scanner = new Scanner(System.in);
-        initializeCommands();
+        this.sc = new Scanner(System.in);
     }
 
+    private void initializeCommands() {
 
-    private void initializeCommands(){
-
-        this.commands = new HashMap<>();
         Player player = Player.getInstance();
-        WorldMap worldMap = WorldMap.getInstance();
+        WorldMap worldMap = new WorldMap();
         NPC npc = new NPC("");
 
         commands.put("examine", new Examine(worldMap.getCurrentPosition()));
@@ -32,50 +31,38 @@ public class Console {
         commands.put("put down", new PutDown(new Item("", "", true), player.getBackpack()));
         commands.put("talk", new Talk(npc));
         commands.put("hint", new Hint());
-        commands.put("use", new Use(new Item("","",true)));
-        commands.put("go", new Movement(worldMap, ""));
+        commands.put("use", new Use(new Item("", "", true)));
+        commands.put("go", new Go());
     }
 
+    public void doCommand(){
+        System.out.println("What do you want to do?");
+        String command = sc.nextLine();
+        command = command.trim();
+        command = command.toLowerCase();
+
+        if(commands.containsKey(command)){
+            System.out.println("--->" + commands.get(command).execute());
+        }else{
+            System.out.println("---> Nondefined command");
+        }
+    }
     public void startGame() {
+        initializeCommands();
         System.out.println("Welcome to The Pekelna Brana!");
         System.out.println("Type 'hint' to see available commands.");
 
-        boolean running = true;
-        while (running) {
-            String command = readCommand();
-            running = processCommand(command);
-        }
+       try{
+           do{
+               doCommand();
+           }while(!exit);
+       }catch(Exception e){
+           System.out.println(e.getMessage());
+       }
         System.out.println("Game Over.");
     }
 
-    private String readCommand() {
-        System.out.print("> ");
-        return scanner.nextLine().trim().toLowerCase();
     }
-    private boolean processCommand(String command) {
-        if (command.equals("exit")) {
-            return false;
-        }
-        printMessage(proceedCommand(command));
-        return true;
-    }
-
-    private String proceedCommand(String command) {
-        if (command.equals("go")) {
-            printMessage("Enter direction (north, south, east, west): ");
-            String direction = readCommand();
-            return new Movement(WorldMap.getInstance(), direction).execute();
-        } else if (commands.containsKey(command)) {
-            return commands.get(command).execute();
-        }
-        return "Unknown command. Type 'hint' to see available commands.";
-    }
-
-    private void printMessage(String message) {
-        System.out.println(message);
-    }
-
-}
 
 
 

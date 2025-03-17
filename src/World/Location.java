@@ -1,40 +1,46 @@
 package World;
 
-import characters.Monster;
-import characters.NPC;
-
-import java.util.ArrayList;
-
 public class Location {
 
     private String name;
     private int ID;
-    private int[] connections;
-    private ArrayList<Item> items;
-    private NPC npc;
-    private Monster monster;
+    private int[] locations;
 
-    public Location(String name, int ID, int[] connections, NPC npc, ArrayList<Item> items, Monster monster) {
+
+    public Location(String name, int ID, String[] locations) {
         this.name = name;
         this.ID = ID;
-        this.connections = connections;
-        this.npc = npc;
-        this.items = items;
-        this.monster = monster;
-    }
-
-    public Location(String name, int id, int[] directions) {
+        this.locations = new int[4];
+        for (int i = 0; i <locations.length; i++) {
+            this.locations[i] = Integer.parseInt(locations[i]);
+        }
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getID() {
         return ID;
     }
 
-    public int getDirection(int index) {
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int[] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(int[] locations) {
+        this.locations = locations;
+    }
+
+   /* public int getDirection(int index) {
         return (index >= 0 && index < connections.length) ? connections[index] : -1;
     }
 
@@ -49,20 +55,8 @@ public class Location {
             }
         }
         return null; // Pokud položka není nalezena
-    }
+    }*/
 
-    public NPC getNpc() {
-        return npc;
-    }
 
-    public Monster getMonster() {
-        return monster;
-    }
-    public void addItem(Item item) {
-        items.add(item);
-    }
-    public void removeItem(Item item) {
-        items.remove(item);
-    }
 
 }
