@@ -41,11 +41,11 @@ public class Location {
     }
 
 
-    public String getDescription() {
+   /* public String getDescription() {
         return "You are in: " + name + ". " + (items.isEmpty() ? "There are no items here." : "Items are available in this location.");
     }
 
-  /*  public Item getItemByName(String name) {
+   public Item getItemByName(String name) {
         for (Item item : items) {
             if (item.getName().equalsIgnoreCase(name)) {
                 return item;

@@ -8,11 +8,8 @@ public class PickUp extends Command {
     private Backpack backpack;
 
     public String execute() {
-        if (item.isPortable()) {
+
             return backpack.addItem(item) ? "You picked up the item: " + item.getName() : "Backpack is full!";
-        } else {
-            return "This item is not portable.";
-        }
     }
 
     public PickUp(Item item, Backpack backpack) {

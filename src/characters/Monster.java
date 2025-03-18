@@ -4,7 +4,6 @@ public class Monster {
 
     private int health;
     private int attackDamage;
- //   private static Monster instance;
 
 
     public Monster(int health, int attackDamage) {
@@ -16,12 +15,6 @@ public class Monster {
 
     }
 
-  /*  public static Monster getInstance() {
-        if (instance == null) {
-            instance = new Monster();
-        }
-        return instance;
-    }*/
 
     public int getHealth() {
         return health;

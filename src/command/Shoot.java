@@ -4,6 +4,8 @@ import characters.Boss;
 import characters.Monster;
 import characters.Player;
 
+import java.util.Scanner;
+
 public class Shoot extends Command {
 
     private Monster monster;
@@ -29,6 +31,13 @@ public class Shoot extends Command {
         if(!player.isAlive()) {
             return "You are dead! Cannot fight.";
         }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Will you fight or just escape like a coward! (fight / escape)");
+        String choice = scanner.nextLine();
+
+        if ("escape".equalsIgnoreCase(choice)) {
+            return "You escaped from the monster you coward! ";
+        }
 
         player.attack(monster);
         if (monster.isDefeated()) {
@@ -43,9 +52,17 @@ public class Shoot extends Command {
         if (!player.isAlive()) {
             return "You are dead! Cannot fight.";
         }
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Will you fight or just escape like a coward! (fight / escape)");
+        String BossChoice = scanner.nextLine();
+
+        if ("escape".equalsIgnoreCase(BossChoice)) {
+            return "You escaped from the boss you coward! ";
+        }
+
         boss.useSpeciesAttack(player);
         if (!player.isAlive()) {
-            return "You were defeated by the boss!";
+            return "You were killed by the boss!";
         }
         player.attack(boss);
         return "You attacked the boss! Boss health: " + boss.getHealth();

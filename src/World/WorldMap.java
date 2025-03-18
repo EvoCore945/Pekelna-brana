@@ -13,6 +13,8 @@ public class WorldMap {
     private int start = 0;
     private int currentPosition = start;
    public static boolean hasAccessCard;
+   public static boolean permission1 = false;
+   public static boolean permission2 = false;
 
 
     public boolean loadMap(){
@@ -21,12 +23,8 @@ public class WorldMap {
             while ((part = br.readLine()) != null){
                 String[] parts = part.split(";");
 
-                if (parts.length < 6) {
-                    System.out.println("Invalid line format: " + part);
-                    continue;
-                }
 
-                Location location = new Location(parts[0], Integer.parseInt(parts[0]), Arrays.copyOfRange(parts,2,6));
+                Location location = new Location(parts[1], Integer.parseInt(parts[0]), Arrays.copyOfRange(parts,2,6));
                 world.put(Integer.valueOf(parts[0]), location);
             }
             return  true;
@@ -35,8 +33,12 @@ public class WorldMap {
            return  false;
         }
     }
-    public Location getCurrentPosition(){
+    public Location getCurrentPosition2(){
         return world.get(currentPosition);
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
     public HashMap<Integer, Location> getWorld(){
@@ -53,10 +55,10 @@ public class WorldMap {
             case "south":
                 indexOFdirection = 1;
                 break;
-            case "East":
+            case "east":
                 indexOFdirection = 2;
                 break;
-            case "West":
+            case "west":
                 indexOFdirection = 3;
                 break;
             default:
@@ -67,9 +69,14 @@ public class WorldMap {
             return "You cant go that way!";
 
         }else{
-            if (currentPosition == 0 && hasAccessCard==false) {
-                return "You dont have a Item for this Room!";
+            if (currentPosition == 0 && !permission2 == false && direction.equals("north")) {
+
+                return "You dont have a permission 2 for this Room!";
             }
+            if(currentPosition == 6 && !permission1 == false && direction.equals("south")){
+                return "You need a Permission for this Room!";
+            }
+
             currentPosition = newLocation;
             return "You moved to " + world.get(currentPosition).getName();
         }

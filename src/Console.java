@@ -11,8 +11,7 @@ import java.util.Scanner;
 public class Console {
 
     private Scanner sc;
-    private Map<String, Command> commands = new HashMap<String, Command>();
-    public static String CommandsFile = "commands.txt";
+    private Map<String, Command> commands = new HashMap<>();
 
     public Console() {
         this.sc = new Scanner(System.in);
@@ -24,13 +23,13 @@ public class Console {
         WorldMap worldMap = new WorldMap();
         NPC npc = new NPC("");
 
-        commands.put("examine", new Examine(worldMap.getCurrentPosition()));
+        commands.put("examine", new Examine(worldMap.getCurrentPosition2()));
         commands.put("shoot", new Shoot(player));
-        commands.put("pick up", new PickUp(new Item("", "", true), player.getBackpack()));
-        commands.put("put down", new PutDown(new Item("", "", true), player.getBackpack()));
+        commands.put("pick up", new PickUp(new Item("", ""), player.getBackpack()));
+        commands.put("put down", new PutDown(new Item("", ""), player.getBackpack()));
         commands.put("talk", new Talk(npc));
         commands.put("hint", new Hint());
-        commands.put("use", new Use(new Item("", "", true)));
+        commands.put("use", new Use(new Item("", "")));
         commands.put("go", new Go());
         commands.put("end", new End());
     }

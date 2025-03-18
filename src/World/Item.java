@@ -4,13 +4,12 @@ public class Item {
 
     private String name;
     private String description;
-    private boolean portable;
 
 
-    public Item(String name, String description, boolean portable) {
+    public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        this.portable = portable;
+
     }
 
     public String getName() {
@@ -21,8 +20,6 @@ public class Item {
         return description;
     }
 
-    public boolean isPortable() {
-        return portable;
-    }
+
 }
 
