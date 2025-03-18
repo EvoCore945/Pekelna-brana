@@ -12,7 +12,7 @@ public class WorldMap {
     private static HashMap<Integer, Location> world = new HashMap<>();
     private int start = 0;
     private int currentPosition = start;
-   // private static WorldMap worldMap = new WorldMap();
+   public static boolean hasAccessCard;
 
 
     public boolean loadMap(){
@@ -67,10 +67,12 @@ public class WorldMap {
             return "You cant go that way!";
 
         }else{
+            if (currentPosition == 0 && hasAccessCard==false) {
+                return "You dont have a Item for this Room!";
+            }
             currentPosition = newLocation;
             return "You moved to " + world.get(currentPosition).getName();
         }
-
     }
 
     public boolean unlockDoor(String doorName, Backpack backpack) {

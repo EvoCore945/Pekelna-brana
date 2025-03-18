@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Console {
 
     private Scanner sc;
-    private boolean exit = false;
     private Map<String, Command> commands = new HashMap<String, Command>();
     public static String CommandsFile = "commands.txt";
 
@@ -33,6 +32,7 @@ public class Console {
         commands.put("hint", new Hint());
         commands.put("use", new Use(new Item("", "", true)));
         commands.put("go", new Go());
+        commands.put("end", new End());
     }
 
     public void doCommand(){
@@ -42,7 +42,7 @@ public class Console {
         command = command.toLowerCase();
 
         if(commands.containsKey(command)){
-            System.out.println("--->" + commands.get(command).execute());
+            System.out.println("---> " + commands.get(command).execute());
         }else{
             System.out.println("---> Nondefined command");
         }
@@ -55,7 +55,7 @@ public class Console {
        try{
            do{
                doCommand();
-           }while(!exit);
+           }while(!End.exit);
        }catch(Exception e){
            System.out.println(e.getMessage());
        }

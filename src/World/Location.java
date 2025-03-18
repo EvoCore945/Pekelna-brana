@@ -40,15 +40,12 @@ public class Location {
         this.locations = locations;
     }
 
-   /* public int getDirection(int index) {
-        return (index >= 0 && index < connections.length) ? connections[index] : -1;
-    }
 
     public String getDescription() {
         return "You are in: " + name + ". " + (items.isEmpty() ? "There are no items here." : "Items are available in this location.");
     }
 
-    public Item getItemByName(String name) {
+  /*  public Item getItemByName(String name) {
         for (Item item : items) {
             if (item.getName().equalsIgnoreCase(name)) {
                 return item;

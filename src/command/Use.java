@@ -2,7 +2,7 @@ package command;
 
 import World.Item;
 
-public class Use implements Command{
+public class Use extends Command{
 
     private Item item;
     private Backpack backpack;

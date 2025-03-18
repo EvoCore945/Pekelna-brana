@@ -1,7 +1,12 @@
 package command;
 
-public interface Command {
+public abstract class Command {
 
-    String execute();
-    boolean exit();
+   protected String command;
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+    public abstract String execute();
+    public abstract  boolean exit();
 }

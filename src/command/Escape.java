@@ -2,7 +2,7 @@ package command;
 
 import characters.Monster;
 
-public class Escape implements Command {
+public class Escape extends Command {
 
 
     private Monster monster;

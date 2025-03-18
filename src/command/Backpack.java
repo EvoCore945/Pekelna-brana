@@ -3,7 +3,7 @@ package command;
 import World.Item;
 import java.util.ArrayList;
 
-public class Backpack {
+public class Backpack extends Command{
     private ArrayList<Item> items;
     private int capacity;
 
@@ -57,4 +57,13 @@ public class Backpack {
         return "Inventory: " + items.toString();
     }
 
+    @Override
+    public String execute() {
+    return "Inventory: " + items.toString();
+    }
+
+    @Override
+    public boolean exit() {
+        return false;
+    }
 }

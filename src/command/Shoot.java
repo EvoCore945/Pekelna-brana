@@ -4,7 +4,7 @@ import characters.Boss;
 import characters.Monster;
 import characters.Player;
 
-public class Shoot implements Command {
+public class Shoot extends Command {
 
     private Monster monster;
     private Player player;
@@ -17,7 +17,6 @@ public class Shoot implements Command {
     }
 
     public Shoot(Player player) {
-        //this.monster = monster;
         this.player = player;
         this.boss = null;
     }

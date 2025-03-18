@@ -2,7 +2,7 @@ package command;
 
 import characters.NPC;
 
-public class Talk implements Command{
+public class Talk extends Command{
 
     private NPC character;
 

@@ -2,7 +2,7 @@ package command;
 
 import World.Location;
 
-public class Hint implements Command {
+public class Hint extends Command {
 
     private Location location;
 

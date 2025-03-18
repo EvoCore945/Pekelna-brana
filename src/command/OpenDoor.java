@@ -2,7 +2,7 @@ package command;
 
 import World.WorldMap;
 
-public class OpenDoor implements Command {
+public class OpenDoor extends Command {
 
     private WorldMap worldMap;
     private String doorName;
