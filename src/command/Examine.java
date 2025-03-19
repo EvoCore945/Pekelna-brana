@@ -1,5 +1,5 @@
 package command;
-
+import characters.NPC;
 import World.Item;
 import World.Location;
 import World.WorldMap;
@@ -32,6 +32,7 @@ public class Examine extends Command {
 
             case 1 :
             itemsInRooms.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice."));
+            WorldMap.permission4 = true;
 
                 return "You are in Sklad Paliva.";
 
@@ -42,25 +43,28 @@ public class Examine extends Command {
 
             case 3 :
                 itemsInRooms.add(new Item("database","LORE"));
-                itemsInRooms.add(new Item("Serverovna_Acces_Card2", "Can open Labrorator"));
+                itemsInRooms.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř"));
+                WorldMap.permission3 = true;
                 return "You are in Serverovna.";
 
             case 4 :
-                itemsInRooms.add(new Item("Permission_BossRoom", "This will gave you acces to Section X0-7"));
+                itemsInRooms.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7"));
 
                 WorldMap.permission1 = true;
                 return "You are in Strojovna.";
 
             case 5 :
-                itemsInRooms.add(new Item("Permission_PortalRoom", "This will gave you acces to Portalova Komora"));
+                itemsInRooms.add(new Item("Permission_PortalRoom", "This will gave you access to Portalová Komora"));
 
                 WorldMap.permission2 = true;
                 return "You are in Velín.";
 
             case 6 :
-                itemsInRooms.add(new Item("", ""));
+                itemsInRooms.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna"));
+                NPC npc = new NPC("Dr.Caldwell", "");
 
-                return "You are in Laboratoř.";
+
+                return "You are in Laboratoř. You may find someone here..";
 
             case 7 :
                 itemsInRooms.add(new Item("", ""));

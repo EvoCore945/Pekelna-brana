@@ -6,7 +6,7 @@ public class Talk extends Command{
 
     private NPC character;
 
-    public Talk(NPC character) {
+    public Talk() {
         this.character = character;
     }
 

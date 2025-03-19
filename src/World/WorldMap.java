@@ -9,12 +9,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class WorldMap {
-    private static HashMap<Integer, Location> world = new HashMap<>();
-    private int start = 0;
-    private int currentPosition = start;
+   private static HashMap<Integer, Location> world = new HashMap<>();
+   private static int start = 0;
+   private static int currentPosition = start;
    public static boolean hasAccessCard;
    public static boolean permission1 = false;
    public static boolean permission2 = false;
+   public static boolean permission3 = false;
+   public static boolean permission4 = false;
 
 
     public boolean loadMap(){
@@ -37,7 +39,7 @@ public class WorldMap {
         return world.get(currentPosition);
     }
 
-    public int getCurrentPosition() {
+    static public int getCurrentPosition() {
         return currentPosition;
     }
 
@@ -69,12 +71,18 @@ public class WorldMap {
             return "You cant go that way!";
 
         }else{
-            if (currentPosition == 0 && !permission2 == false && direction.equals("north")) {
+            if (currentPosition == 0 && permission2 == false && direction.equals("north")) {
 
                 return "You dont have a permission 2 for this Room!";
             }
-            if(currentPosition == 6 && !permission1 == false && direction.equals("south")){
-                return "You need a Permission for this Room!";
+            if(currentPosition == 0 && permission3 == false && direction.equals("west")){
+                return "You need a Permission 3 for this Room!";
+            }
+            if(currentPosition == 6 && permission1 == false && direction.equals("south")){
+                return "You need a Permission 1 for this Room!";
+            }
+            if(currentPosition == 0 && permission4 == false && direction.equals("east")){
+                return "You need a Permission 4 for this Room!";
             }
 
             currentPosition = newLocation;
