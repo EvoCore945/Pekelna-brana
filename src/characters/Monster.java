@@ -15,7 +15,6 @@ public class Monster {
 
     }
 
-
     public int getHealth() {
         return health;
     }

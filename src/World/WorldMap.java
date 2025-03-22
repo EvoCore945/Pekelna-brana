@@ -1,7 +1,4 @@
 package World;
-
-import command.Backpack;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -17,6 +14,7 @@ public class WorldMap {
    public static boolean permission2 = false;
    public static boolean permission3 = false;
    public static boolean permission4 = false;
+   public static boolean permission5 = false;
 
 
     public boolean loadMap(){
@@ -71,18 +69,21 @@ public class WorldMap {
             return "You cant go that way!";
 
         }else{
-            if (currentPosition == 0 && permission2 == false && direction.equals("north")) {
+            if (currentPosition == 0 && !permission2 && direction.equals("north")) {
 
-                return "You dont have a permission 2 for this Room!";
+                return "You dont have a permission 2 to open Portalova komora!";
             }
-            if(currentPosition == 0 && permission3 == false && direction.equals("west")){
-                return "You need a Permission 3 for this Room!";
+            if(currentPosition == 0 && !permission3 && direction.equals("west")){
+                return "You need a Permission 3 to open Zbrojnice!";
             }
-            if(currentPosition == 6 && permission1 == false && direction.equals("south")){
-                return "You need a Permission 1 for this Room!";
+            if(currentPosition == 6 && !permission1 && direction.equals("south")){
+                return "You need a Permission 1 to open Sekce X0-7";
             }
-            if(currentPosition == 0 && permission4 == false && direction.equals("east")){
-                return "You need a Permission 4 for this Room!";
+            if(currentPosition == 0 && !permission4 && direction.equals("east")){
+                return "You need a Permission 4 to open Laborator!";
+            }
+            if(currentPosition == 2 && !permission5 && direction.equals("west")){
+                return "You need a Permission 5 to open Strojovna";
             }
 
             currentPosition = newLocation;
@@ -90,16 +91,7 @@ public class WorldMap {
         }
     }
 
-    public boolean unlockDoor(String doorName, Backpack backpack) {
 
-        if (backpack.hasItem("Access card")) {
-            System.out.println("Doors " + doorName + " were succesfully opened!");
-            return true;
-        } else {
-            System.out.println("You dont have the right access card for this door!");
-            return false;
-        }
-    }
 }
 
 

@@ -7,81 +7,90 @@ import java.util.ArrayList;
 public class Examine extends Command {
 
     private Location location;
+    private WorldMap world = new WorldMap();
     ArrayList<Item> itemsInRooms = new ArrayList<>();
+
 
     public Examine(Location location) {
         this.location = location;
     }
 
-    public String execute() {
 
-        if (location == null) {
+    public String execute() {
+        ItemsInRoom();
+
+        if (world.getCurrentPosition2() == null) {
             return "Unknown location.";
         }
-        return "You are in: " + location.getName() + ". ";
+
+        return "You are in: " + world.getCurrentPosition2() + ". ";
 
     }
-    public String ItemsInRoom(){
+    public void ItemsInRoom(){
         WorldMap worldMap = new WorldMap();
         int currentPosition = worldMap.getCurrentPosition();
 
+        ArrayList<Item> items = new ArrayList<>();
         switch (currentPosition) {
             case 0 :
-                itemsInRooms.add(null);
-                return "You are in Hangar.";
+               break;
 
             case 1 :
-            itemsInRooms.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice."));
-            WorldMap.permission4 = true;
+                System.out.println("Items in this room:");
+                items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice."));
+                WorldMap.permission3 = true;
 
-                return "You are in Sklad Paliva.";
+                break;
 
             case 2 :
-                itemsInRooms.add(new Item("Shotgun", "Increases your damage"));
+                items.add( new Item("Shotgun", "Increases your damage"));
 
-                return "You are in Zbrojnice.";
+                break;
 
             case 3 :
-                itemsInRooms.add(new Item("database","LORE"));
-                itemsInRooms.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř"));
-                WorldMap.permission3 = true;
-                return "You are in Serverovna.";
+                items.add(new Item("database","LORE"));
+                items.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř"));
+                WorldMap.permission4 = true;
+                break;
 
             case 4 :
-                itemsInRooms.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7"));
+                items.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7"));
 
                 WorldMap.permission1 = true;
-                return "You are in Strojovna.";
+                break;
 
             case 5 :
-                itemsInRooms.add(new Item("Permission_PortalRoom", "This will gave you access to Portalová Komora"));
-
+                items.add(new Item("Permission_PortalRoom", "This will gave you access to Portalová Komora"));
                 WorldMap.permission2 = true;
-                return "You are in Velín.";
+                break;
 
             case 6 :
-                itemsInRooms.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna"));
+                items.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna"));
                 NPC npc = new NPC("Dr.Caldwell", "");
+                WorldMap.permission5 = true;
 
-
-                return "You are in Laboratoř. You may find someone here..";
+                break;
 
             case 7 :
-                itemsInRooms.add(new Item("", ""));
 
-                return "You are in Sekce X-07.";
+                break;
 
             case 8 :
-                itemsInRooms.add(new Item("", ""));
 
-                return "You are in Portálová Komora.";
+                break;
 
             default:
         }
-        return"";
+
+        for (Item item : items){
+
+            if (!itemsInRooms.contains(item) ){
+                itemsInRooms.add(item);
+                System.out.println(item);
+
+            }
+        }
     }
-
-
 
     public boolean exit() {
         return false;

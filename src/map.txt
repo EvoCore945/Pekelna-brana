@@ -1,9 +1,9 @@
-0;Hangár;8;1;4;6;
+0;Hangár;8;1;6;2;
 1;SkladPaliva;0;-1;-1;-1;
-2;Zbrojnice;3;-1;4;0;
+2;Zbrojnice;3;-1;0;4;
 3;Serverovna;-1;2;-1;-1;
-4;Strojovna;-1;5;-1;2;
+4;Strojovna;-1;5;2;-1;
 5;Velín;4;-1;-1;-1;
-6;Laboratoř;-1;7;0;-1;
+6;Laboratoř;-1;7;-1;0;
 7;SekceX-07;6;-1;-1;-1;
-8;PortálováKomora;-1;0;-1;-1;
+8;PortálováKomora;-1;0;-1;-1

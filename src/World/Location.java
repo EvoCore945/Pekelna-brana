@@ -1,5 +1,7 @@
 package World;
 
+import java.util.Arrays;
+
 public class Location {
 
     private String name;
@@ -41,19 +43,12 @@ public class Location {
     }
 
 
-   /* public String getDescription() {
-        return "You are in: " + name + ". " + (items.isEmpty() ? "There are no items here." : "Items are available in this location.");
+    @Override
+    public String toString() {
+        return "Location{" +
+                "name='" + name + '\'' +
+                ", ID=" + ID +
+                ", locations=" + Arrays.toString(locations) +
+                '}';
     }
-
-   public Item getItemByName(String name) {
-        for (Item item : items) {
-            if (item.getName().equalsIgnoreCase(name)) {
-                return item;
-            }
-        }
-        return null; // Pokud položka není nalezena
-    }*/
-
-
-
 }
