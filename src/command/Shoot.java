@@ -1,89 +1,70 @@
 package command;
 
+import World.WorldMap;
 import characters.Boss;
 import characters.Monster;
 import characters.Player;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Shoot extends Command {
 
     private Monster monster;
-    private Player player;
     private Boss boss;
 
-    public Shoot(Boss boss, Player player) {
-        this.monster = null;
-        this.player = player;
-        this.boss = boss;
-    }
+    private boolean isDead = false;
+    Random random = new Random();
 
-    public Shoot(Player player) {
-        this.player = player;
-        this.boss = null;
-    }
-
-    private String fightMonster() {
-        if (monster.isDefeated()) {
-            return "The monster is already defeated.";
-        }
-
-        if(!player.isAlive()) {
-            return "You are dead! Cannot fight.";
-        }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Will you fight or just escape like a coward! (fight / escape)");
-        String choice = scanner.nextLine();
-
-        if ("escape".equalsIgnoreCase(choice)) {
-            return "You escaped from the monster you coward! ";
-        }
-
-        player.attack(monster);
-        if (monster.isDefeated()) {
-            return "You defeated the monster!";
-        }
-        monster.attack(player);
-        return "Monster attacked you! Your health: " + player.getHealth();
-
-    }
-    private String fightBoss() {
-
-        if (!player.isAlive()) {
-            return "You are dead! Cannot fight.";
-        }
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Will you fight or just escape like a coward! (fight / escape)");
-        String BossChoice = scanner.nextLine();
-
-        if ("escape".equalsIgnoreCase(BossChoice)) {
-            return "You escaped from the boss you coward! ";
-        }
-
-        boss.useSpeciesAttack(player);
-        if (!player.isAlive()) {
-            return "You were killed by the boss!";
-        }
-        player.attack(boss);
-        return "You attacked the boss! Boss health: " + boss.getHealth();
-    }
-
-    @Override
     public String execute() {
-        if (monster != null) {
-            return fightMonster();
-        } else if (boss != null) {
-            return fightBoss();
+        Scanner sc = new Scanner(System.in);
+        int currentPosition = WorldMap.getCurrentPosition();
+
+         Player player = Player.getInstance();
+        Monster monster =  Monster.getMonsterAt(currentPosition);
+
+        if (monster == null){
+            return "There is no monster in this location.";
         }
-        return "No enemy to fight!";
+        System.out.println(" You have found " + monster.getName() + "You can fight (shoot) or escape (escape)!");
+        String choice = sc.nextLine().toLowerCase();
+
+        if("escape".equals(choice)){
+            return "You escaped!";
+        }else if("shoot".equals(choice)){
+            System.out.println("The fight begins with " + monster.getName() + "!");
+
+            while (player.getHealth() > 0 && monster.getHealth() > 0){
+                System.out.println(monster.getName() + ", Health: " + monster.getHealth() + ", AttackDamage: " + monster.getAttackDamage());
+                System.out.println(player.getName() + ", Health: " + player.getHealth() + ", AttackDamage: " + player.getAttackDamage());
+
+                monster.setHealth(monster.getHealth() - player.getAttackDamage());
+                if(monster.getHealth() <= 0){
+                    System.out.println("You have won!");
+                    player.setHealth(player.getHealth() + 10);
+                    player.setAttackDamage(player.getAttackDamage() + 3);
+                    Monster.removeMonster(currentPosition);
+                    return "Your health and damage are increased! (+10, +3)";
+                }
+                player.setHealth(player.getHealth() - monster.getAttackDamage());
+                if(player.getHealth() <= 0){
+                    System.out.println("You have died!");
+                  isDead = true;
+                }
+            }
+        }
+
+        return " false response!";
     }
 
     @Override
     public boolean exit() {
-        return !player.isAlive() || (monster != null && monster.isDefeated()) || (boss != null && !player.isAlive());
+        return isDead;
     }
 
-        }
+    }
+
+
 
 
 

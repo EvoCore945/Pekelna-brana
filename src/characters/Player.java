@@ -4,29 +4,12 @@ import command.Backpack;
 
 public class Player {
 
-    private String name;
-    private String description;
-    private int health;
-    private int maxHealth;
-    private Backpack backpack;
-    private static Player instance;
-    private int attackDamage;
-
-
-    public Player(String name, String description, int health, int maxHealth, Backpack backpack, int attackDamage) {
-        this.name = name;
-        this.description = description;
-        this.health = health;
-        this.maxHealth = maxHealth;
-        this.backpack = backpack;
-        this.attackDamage = attackDamage;
-    }
+    private String name = "Player";
+    private int health = 100;
+    private static Player instance = new Player();
+    private int attackDamage = 15;
 
     public Player() {
-    }
-
-    public Backpack getBackpack(){
-        return backpack;
     }
 
     public static Player getInstance() {
@@ -36,53 +19,38 @@ public class Player {
         return instance;
     }
 
-    public void takeDamage(int damage) {
-        health -= damage;
-        if (health <= 0) health = 0; {
-            System.out.println("You took "+ damage +" damage! Health left: " + health);
-        }
-    }
-    public boolean isAlive() {
-        return health > 0;
-    }
-    public void attack(Monster monster) {
-        if (isAlive()) {
-            monster.takeDamage(attackDamage);
-            System.out.println("You attacked the  monster! It now has " + monster.getHealth() + " health left.");
-        }
-    }
-    public void useSpecialAttack(Monster monster) {
-        System.out.println(name + " uses special attack!");
-        monster.takeDamage(20);
-    }
-
-    public void heal(int amount) {
-        health += amount;
-        if (health > maxHealth) health = maxHealth;
-        System.out.println("You healed for " + amount + " HP! Current health: " + health);
-    }
-
-
 
     public String getName() {
         return name;
     }
 
-    public String getDescription() {
-        return description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getHealth() {
         return health;
     }
 
-
-    public String toString() {
-        return name + ":" + description + " ( Health" + health + ")";
+    public void setHealth(int health) {
+        this.health = Math.max(0, health);
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
+    public static void setInstance(Player instance) {
+        Player.instance = instance;
+    }
+
+    public int getAttackDamage() {
+        return attackDamage;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" + "name='" + name + '\'' + ", health=" + health + ", attackDamage=" + attackDamage + '}';
     }
 }
 

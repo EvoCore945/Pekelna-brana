@@ -1,43 +1,53 @@
 package characters;
 
+import java.util.HashMap;
+
 public class Monster {
 
+    private String name;
     private int health;
     private int attackDamage;
+    private static HashMap<Integer, Monster> monsters = new HashMap<>();
 
-
-    public Monster(int health, int attackDamage) {
+    public Monster(String name, int health, int attackDamage) {
+        this.name = name;
         this.health = health;
         this.attackDamage = attackDamage;
     }
 
-    public Monster() {
+    public static Monster getMonsterAt(int location){
+        return monsters.get(location);
+}
 
+    public static void addMonster(int location, Monster monster){
+        monsters.put(location, monster);
+    }
+    public static void removeMonster(int location){
+        monsters.remove(location);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getHealth() {
         return health;
     }
 
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
     public int getAttackDamage() {
         return attackDamage;
     }
 
-    public void takeDamage(int damage) {
-        health -= damage;
-        if (health < 0) health = 0;
-    }
-
-    public boolean isDefeated() {
-        return health <= 0;
-    }
-
-    public void attack(Player player) {
-        player.takeDamage(attackDamage);
-    }
-
-    public String toString() {
-        return "Monster with " + health + " health and " + attackDamage + " attack damage.";
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
     }
 }
 

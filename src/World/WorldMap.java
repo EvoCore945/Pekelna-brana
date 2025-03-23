@@ -1,4 +1,7 @@
 package World;
+import characters.Monster;
+import characters.Player;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +18,7 @@ public class WorldMap {
    public static boolean permission3 = false;
    public static boolean permission4 = false;
    public static boolean permission5 = false;
+
 
 
     public boolean loadMap(){
@@ -90,6 +94,16 @@ public class WorldMap {
             return "You moved to " + world.get(currentPosition).getName();
         }
     }
+
+
+    public  void initialzizeMonsters(){
+
+        Monster.addMonster(2, new Monster("RudyDemon", 50,20));
+        Monster.addMonster(6, new Monster("Mutant", 70, 35));
+        Monster.addMonster(4,new Monster("Vidlicka",100,40));
+        Monster.addMonster(7,new Monster("OmegaX-07 (Boss)",200,70));
+    }
+
 
 
 }

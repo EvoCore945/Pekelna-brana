@@ -19,15 +19,14 @@ public class Console {
 
     private void initializeCommands() {
 
-        Player player = Player.getInstance();
         WorldMap worldMap = new WorldMap();
 
 
         commands.put("examine", new Examine(worldMap.getCurrentPosition2()));
-        commands.put("shoot", new Shoot(player));
-        commands.put("pick up", new PickUp(new Item("", ""), player.getBackpack()));
-        commands.put("put down", new PutDown(new Item("", ""), player.getBackpack()));
+        commands.put("shoot", new Shoot());
+       // commands.put("pick up", new PickUp(new Item("", ""), player.getBackpack()));
         commands.put("talk", new Talk());
+        commands.put("prinfo",new PlayerDescription());
         commands.put("hint", new Hint());
         commands.put("use", new Use(new Item("", "")));
         commands.put("go", new Go());
