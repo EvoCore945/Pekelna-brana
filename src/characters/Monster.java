@@ -1,6 +1,7 @@
 package characters;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class Monster {
 
@@ -8,6 +9,7 @@ public class Monster {
     private int health;
     private int attackDamage;
     private static HashMap<Integer, Monster> monsters = new HashMap<>();
+    Random rd = new Random();
 
     public Monster(String name, int health, int attackDamage) {
         this.name = name;

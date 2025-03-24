@@ -26,7 +26,12 @@ public class Shoot extends Command {
         if (monster == null){
             return "There is no monster in this location.";
         }
-        System.out.println(" You have found " + monster.getName() + "You can fight (shoot) or escape (escape)!");
+        System.out.println("----------------------------------------------------------------");
+        System.out.println("You have found " + monster.getName() + "!");
+        System.out.println("Monster health: " + monster.getHealth() + " Monster damage: "+ monster.getAttackDamage() );
+        System.out.println("                VS              ");
+        System.out.println("Your health: " + Player.getInstance().getHealth() + " Your damage: " + Player.getInstance().getAttackDamage());
+        System.out.println("You can fight (shoot) or escape (escape)");
         String choice = sc.nextLine().toLowerCase();
 
         if("escape".equals(choice)){
@@ -40,21 +45,24 @@ public class Shoot extends Command {
 
                 monster.setHealth(monster.getHealth() - player.getAttackDamage());
                 if(monster.getHealth() <= 0){
+                    int hpReward = random.nextInt(10,20);
+                    int attackDamageReward = random.nextInt(5,10);
+
                     System.out.println("You have won!");
-                    player.setHealth(player.getHealth() + 10);
-                    player.setAttackDamage(player.getAttackDamage() + 3);
+                    player.setHealth(player.getHealth() + hpReward);
+                    player.setAttackDamage(player.getAttackDamage() + attackDamageReward);
                     Monster.removeMonster(currentPosition);
-                    return "Your health and damage are increased! (+10, +3)";
+                    return "You have gained extra health: " + hpReward + " and attackDamage: " + attackDamageReward + "!";
                 }
                 player.setHealth(player.getHealth() - monster.getAttackDamage());
                 if(player.getHealth() <= 0){
                     System.out.println("You have died!");
-                  isDead = true;
+                    End.exit = true;
+                    isDead = true;
                 }
             }
         }
-
-        return " false response!";
+        return "";
     }
 
     @Override

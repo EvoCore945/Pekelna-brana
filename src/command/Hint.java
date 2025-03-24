@@ -11,14 +11,13 @@ public class Hint extends Command {
             return """
                 Commands you can type:
                 - go [direction] --> move to the location
-                - hint --> if you are lost
+                - hint --> all commands
                 - examine [room] --> search the room for items
                 - pickUp [item] --> pick up a item
-                - putDown [item] --> put down a item
                 - talk [NPC] --> talk with NPC
                 - shoot [Enemy] --> Start the fight with a monster
                 - end [PekelnaBrana] --> Close the game
-                - pInfo --> information about you
+                - prinfo --> information about you
                 
                 """
                     ;

@@ -6,7 +6,7 @@ public class Main {
         Console console = new Console();
         WorldMap worldMap = new WorldMap();
         worldMap.initialzizeMonsters();
-
+        worldMap.initializeNPCs();
         worldMap.loadMap();
         console.startGame();
     }

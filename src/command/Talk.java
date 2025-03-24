@@ -1,5 +1,6 @@
 package command;
 
+import World.WorldMap;
 import characters.NPC;
 
 public class Talk extends Command{
@@ -12,10 +13,13 @@ public class Talk extends Command{
 
     @Override
     public String execute() {
-        if (character == null) return "There is no one to talk to here.";
-
-        String dialogue = character.getDialogue();
-        return (dialogue != null && !dialogue.isEmpty()) ? dialogue : "This character has nothing to say.";
+        int currentPosition = WorldMap.getCurrentPosition();
+        NPC npc = NPC.getNPCAt(currentPosition);
+        if (npc != null){
+            return npc.talk();
+        }else{
+            return "There's no one here to talk to.";
+        }
     }
 
     @Override
