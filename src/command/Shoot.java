@@ -1,7 +1,6 @@
 package command;
 
 import World.WorldMap;
-import characters.Boss;
 import characters.Monster;
 import characters.Player;
 
@@ -11,7 +10,6 @@ import java.util.Scanner;
 public class Shoot extends Command {
 
     private Monster monster;
-    private Boss boss;
 
     private boolean isDead = false;
     Random random = new Random();

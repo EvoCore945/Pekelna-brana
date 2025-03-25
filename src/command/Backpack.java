@@ -1,69 +1,86 @@
 package command;
 
 import World.Item;
+import World.ItemType;
+import characters.Player;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Backpack extends Command{
-    private ArrayList<Item> items;
-    private int capacity;
+public class Backpack extends Command {
+    private static ArrayList<Item> backpack = new ArrayList<>();
 
+    public static ArrayList<Item> getBackpack() {
+        return backpack;
 
-    public Backpack(int capacity) {
-        this.items = new ArrayList<Item>();
-        this.capacity = capacity;
     }
 
-    public boolean addItem(Item item) {
-        if (items.size() < capacity) {
-            items.add(item);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean removeItem(Item item) {
-       return items.remove(item);
-    }
-
-    public boolean hasItem(String itemName) {
-        return items.stream().anyMatch(i -> i.getName().equalsIgnoreCase(itemName));
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
-    }
-
-    public String useItem() {
-        return "Item used";
-    }
-
-    public String listItems() {
-        if (items.isEmpty()) {
-            return "Backpack is empty.";
-        }
-        StringBuilder itemList = new StringBuilder("Items in Backpack: ");
-        for (Item item : items) {
-            itemList.append(item.getName()).append(", ");
-        }
-        return itemList.toString();
-    }
-
-    public boolean isFull() {
-        return items.size() >= capacity;
-    }
-
-    @Override
-    public String toString() {
-        return "Inventory: " + items.toString();
-    }
-
-    @Override
     public String execute() {
-    return "Inventory: " + items.toString();
+        Scanner sc = new Scanner(System.in);
+
+        if (backpack.isEmpty()) {
+            System.out.println("Backpack is empty");
+            return "";
+        }
+        System.out.println("TYPE: '1' - Writes all the items in your backpack.");
+        System.out.println("TYPE: '2' - Use a specific item");
+
+        int choice = sc.nextInt();
+
+        switch (choice) {
+
+            case 1:
+                showBackpack();
+                break;
+            case 2:
+                useItem(sc);
+                break;
+            default:
+                System.out.println("Invalid selection");
+        }
+        return "";
     }
 
-    @Override
-    public boolean exit() {
-        return false;
+
+    public void showBackpack() {
+
+        System.out.println("These are the items in your backpack:");
+        for (int i = 0; i < backpack.size(); i++) {
+            System.out.println((i + 1) + ". " + backpack.get(i).getName() + " - " + backpack.get(i).getDescription());
+        }
     }
-}
+
+    public void useItem(Scanner sc) {
+
+        showBackpack();
+        System.out.println("Enter the number of the item you want to use:");
+
+        if (!sc.hasNextInt()) {
+            System.out.println("Invalid input");
+        }
+
+        int index = sc.nextInt() - 1;
+
+        if (index < 0 || index >= backpack.size()) {
+
+            System.out.println("Invalid selection");
+
+        }
+        Item selectedItem = backpack.get(index);
+        if (selectedItem.getType().equals(ItemType.HEAL)) {
+            int bonusHealth = Player.getInstance().getHealth() + selectedItem.getBonusHealth();
+            Player.getInstance().setHealth(Player.getInstance().getHealth() + selectedItem.getBonusHealth());
+            backpack.remove(index);
+            System.out.println("Health restored to" + Player.getInstance().getHealth());
+        } else if (selectedItem.getType().equals(ItemType.WEAPON)) {
+            Player.getInstance().setAttackDamage(Player.getInstance().getAttackDamage() + selectedItem.getBonusDamage());
+            backpack.remove(index);
+            System.out.println("Attack damage increased to " + Player.getInstance().getAttackDamage());
+        }
+
+    }
+        @Override
+        public boolean exit () {
+            return false;
+        }
+    }

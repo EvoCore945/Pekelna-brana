@@ -23,12 +23,11 @@ public class Console {
 
 
         commands.put("examine", new Examine(worldMap.getCurrentPosition2()));
+        commands.put("backpack", new Backpack());
         commands.put("shoot", new Shoot());
-       // commands.put("pick up", new PickUp(new Item("", ""), player.getBackpack()));
         commands.put("talk", new Talk());
         commands.put("prinfo",new PlayerDescription());
         commands.put("hint", new Hint());
-        commands.put("use", new Use(new Item("", "")));
         commands.put("go", new Go());
         commands.put("end", new End());
     }

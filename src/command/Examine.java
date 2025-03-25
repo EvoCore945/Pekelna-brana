@@ -4,6 +4,9 @@ import World.Item;
 import World.Location;
 import World.WorldMap;
 import java.util.ArrayList;
+
+import static World.ItemType.*;
+
 public class Examine extends Command {
 
     private Location location;
@@ -37,35 +40,35 @@ public class Examine extends Command {
 
             case 1 :
                 System.out.println("Items in this room:");
-                items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice."));
+                items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice. (Cant be used)", CARD));
                 WorldMap.permission3 = true;
 
                 break;
 
             case 2 :
-                items.add( new Item("Shotgun", "Increases your damage"));
+                items.add( new Item("Shotgun", "Increases your damage", WEAPON));
 
                 break;
 
             case 3 :
-                items.add(new Item("database","LORE"));
-                items.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř"));
+                items.add(new Item("database","LORE", LOG));
+                items.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř (Cant be used)",CARD));
                 WorldMap.permission4 = true;
                 break;
 
             case 4 :
-                items.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7"));
+                items.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7 (Cant be used)",CARD));
 
                 WorldMap.permission1 = true;
                 break;
 
             case 5 :
-                items.add(new Item("Permission_PortalRoom", "This will gave you access to Portalová Komora"));
+                items.add(new Item("Permission_PortalRoom", "This will gave you access to Portalová Komora (Cant be used)",CARD));
                 WorldMap.permission2 = true;
                 break;
 
             case 6 :
-                items.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna"));
+                items.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna (Cant be used)",CARD));
                 NPC npc = new NPC("Dr.Caldwell", "");
                 WorldMap.permission5 = true;
 
