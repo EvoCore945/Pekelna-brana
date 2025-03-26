@@ -1,12 +1,15 @@
 package World;
 
+import java.util.Random;
+
 public class Item {
+    Random rd = new Random();
 
     private String name;
     private String description;
     private ItemType type;
-    private int bonusHealth;
-    private int bonusDamage;
+    private final int bonusHealth = rd.nextInt(10,20);
+    private final int bonusDamage = rd.nextInt(5,10);
 
 
     public Item(String name, String description, ItemType type) {
@@ -37,11 +40,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", type=" + type +
-                '}';
+        return "Item name = " + name  + ", = " + description + ", type = " + type;
     }
 }
 

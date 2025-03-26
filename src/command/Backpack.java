@@ -12,7 +12,9 @@ public class Backpack extends Command {
 
     public static ArrayList<Item> getBackpack() {
         return backpack;
-
+    }
+    public static void addItemToBackpack(Item item){
+        backpack.add(item);
     }
 
     public String execute() {
@@ -57,6 +59,8 @@ public class Backpack extends Command {
 
         if (!sc.hasNextInt()) {
             System.out.println("Invalid input");
+            sc.next();
+            return;
         }
 
         int index = sc.nextInt() - 1;
@@ -64,9 +68,16 @@ public class Backpack extends Command {
         if (index < 0 || index >= backpack.size()) {
 
             System.out.println("Invalid selection");
-
         }
+
+
         Item selectedItem = backpack.get(index);
+        if(selectedItem.getType().equals(ItemType.CARD)){
+            System.out.println("Cards are already used.");
+        }
+        if(selectedItem.getType().equals(ItemType.LOG)){
+            selectedItem.toString();
+        }
         if (selectedItem.getType().equals(ItemType.HEAL)) {
             int bonusHealth = Player.getInstance().getHealth() + selectedItem.getBonusHealth();
             Player.getInstance().setHealth(Player.getInstance().getHealth() + selectedItem.getBonusHealth());

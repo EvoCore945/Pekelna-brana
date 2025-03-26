@@ -11,6 +11,7 @@ public class Hint extends Command {
             return """
                 Commands you can type:
                 - go [direction] --> move to the location
+                - backpack --> show or use your items in backpack
                 - hint --> all commands
                 - examine [room] --> search the room for items
                 - pickUp [item] --> pick up a item

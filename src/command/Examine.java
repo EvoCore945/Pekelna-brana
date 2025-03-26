@@ -4,34 +4,36 @@ import World.Item;
 import World.Location;
 import World.WorldMap;
 import java.util.ArrayList;
+import command.Backpack;
 
 import static World.ItemType.*;
 
 public class Examine extends Command {
 
     private Location location;
-    private WorldMap world = new WorldMap();
-    ArrayList<Item> itemsInRooms = new ArrayList<>();
+    private WorldMap world = new WorldMap();;
+    private ArrayList<Item> itemsInRooms = new ArrayList<>();
 
 
     public Examine(Location location) {
         this.location = location;
     }
 
-
     public String execute() {
+        System.out.println("You are in: " + world.getCurrentPosition2() + ". ");
+
         ItemsInRoom();
 
         if (world.getCurrentPosition2() == null) {
             return "Unknown location.";
         }
 
-        return "You are in: " + world.getCurrentPosition2() + ". ";
+        return "";
 
     }
     public void ItemsInRoom(){
-        WorldMap worldMap = new WorldMap();
-        int currentPosition = worldMap.getCurrentPosition();
+
+        int currentPosition = WorldMap.getCurrentPosition();
 
         ArrayList<Item> items = new ArrayList<>();
         switch (currentPosition) {
@@ -39,7 +41,6 @@ public class Examine extends Command {
                break;
 
             case 1 :
-                System.out.println("Items in this room:");
                 items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice. (Cant be used)", CARD));
                 WorldMap.permission3 = true;
 
@@ -88,7 +89,9 @@ public class Examine extends Command {
         for (Item item : items){
 
             if (!itemsInRooms.contains(item) ){
+                System.out.println("These items were added to your backpack:");
                 itemsInRooms.add(item);
+                Backpack.addItemToBackpack(item);
                 System.out.println(item);
 
             }
