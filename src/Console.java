@@ -28,6 +28,7 @@ public class Console {
         commands.put("talk", new Talk());
         commands.put("prinfo",new PlayerDescription());
         commands.put("hint", new Hint());
+        commands.put("help", new Help());
         commands.put("go", new Go());
         commands.put("end", new End());
     }

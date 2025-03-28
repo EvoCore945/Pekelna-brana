@@ -1,10 +1,9 @@
 package command;
-import characters.NPC;
 import World.Item;
 import World.Location;
 import World.WorldMap;
 import java.util.ArrayList;
-import command.Backpack;
+import java.util.HashMap;
 
 import static World.ItemType.*;
 
@@ -12,7 +11,7 @@ public class Examine extends Command {
 
     private Location location;
     private WorldMap world = new WorldMap();;
-    private ArrayList<Item> itemsInRooms = new ArrayList<>();
+    private HashMap<Integer,ArrayList<Item>> roomItems = new HashMap<>();
 
 
     public Examine(Location location) {
@@ -32,32 +31,36 @@ public class Examine extends Command {
 
     }
     public void ItemsInRoom(){
-
         int currentPosition = WorldMap.getCurrentPosition();
+        if(!roomItems.containsKey(currentPosition)){
+            ArrayList<Item> items = new ArrayList<>();
 
-        ArrayList<Item> items = new ArrayList<>();
+
         switch (currentPosition) {
             case 0 :
                break;
 
             case 1 :
-                items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice. (Cant be used)", CARD));
+               items.add(new Item("Zbrojnice_Acces_Card1", "Can open Zbrojnice. (Cant be used)", CARD));
                 WorldMap.permission3 = true;
 
                 break;
 
             case 2 :
-                items.add( new Item("Shotgun", "Increases your damage", WEAPON));
+                items.add( new Item("Shotgun", "Increases your damage when used", WEAPON));
 
                 break;
 
             case 3 :
+                items.add(new Item("Syringe", "Increases your health when used", HEAL));
                 items.add(new Item("database","LORE", LOG));
                 items.add(new Item("Serverovna_Access_Card2", "Can open Labroratoř (Cant be used)",CARD));
                 WorldMap.permission4 = true;
                 break;
 
             case 4 :
+                items.add( new Item("LMG", "Increases your damage when used", WEAPON));
+                items.add(new Item("MedKit", "Increases your health when used", HEAL));
                 items.add(new Item("Permission_BossRoom", "This will gave you access to Section X0-7 (Cant be used)",CARD));
 
                 WorldMap.permission1 = true;
@@ -69,35 +72,39 @@ public class Examine extends Command {
                 break;
 
             case 6 :
+                items.add( new Item("Pistol", "Increases your damage when used", WEAPON));
+                System.out.println("There could be someone hiding in this room...");
+                items.add(new Item("MedKit", "Increases your health when used", HEAL));
                 items.add(new Item("Strojovna_Access_Card3", "This card will gave you access to Strojovna (Cant be used)",CARD));
-                NPC npc = new NPC("Dr.Caldwell", "");
                 WorldMap.permission5 = true;
-
                 break;
 
             case 7 :
-
+                items.add(new Item("MedKit", "Increases your health when used", HEAL));
                 break;
 
             case 8 :
-
+                items.add( new Item("SMG", "Increases your damage when used", WEAPON));
+                System.out.println("you are standing right in front of the terminal that can close this huge Portal. You must use the Electric Stabilizer to close the portal!");
                 break;
-
             default:
+                return;
+        }
+        roomItems.put(currentPosition,items);
         }
 
-        for (Item item : items){
+        ArrayList<Item> itemsInRooms = roomItems.get(currentPosition);
 
-            if (!itemsInRooms.contains(item) ){
-                System.out.println("These items were added to your backpack:");
-                itemsInRooms.add(item);
-                Backpack.addItemToBackpack(item);
-                System.out.println(item);
-
+            if (itemsInRooms != null && !itemsInRooms.isEmpty()){
+                for (Item item : new ArrayList<>(itemsInRooms)) {
+                    Backpack.addItemToBackpack(item);
+                    System.out.println(item + " > > > was added to your backpack!");
+                }
+                itemsInRooms.clear();
+        }else{
+                System.out.println("There are no items left in this room.");
             }
-        }
     }
-
     public boolean exit() {
         return false;
     }

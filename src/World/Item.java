@@ -40,7 +40,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item name = " + name  + ", = " + description + ", type = " + type;
+        return "Item name = " + name  + ", " + description + ", type = " + type;
     }
 }
 

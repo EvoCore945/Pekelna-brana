@@ -1,11 +1,11 @@
 package command;
-
+import World.Item;
 import World.WorldMap;
 import characters.Monster;
 import characters.Player;
-
 import java.util.Random;
 import java.util.Scanner;
+import static World.ItemType.FINALITEM;
 
 public class Shoot extends Command {
 
@@ -49,6 +49,11 @@ public class Shoot extends Command {
                     System.out.println("You have won!");
                     player.setHealth(player.getHealth() + hpReward);
                     player.setAttackDamage(player.getAttackDamage() + attackDamageReward);
+
+                    if(monster.getName().equals("OmegaX-07 (Boss)")){
+                        System.out.println("The Final BOSS has been defeated! He dropped Electro Stabilizer!");
+                        Backpack.addItemToBackpack(new Item("Electro Stabilizer", "Use it to shut down the Portal in Portalova Komora and end this madness!",FINALITEM));
+                    }
                     Monster.removeMonster(currentPosition);
                     return "You have gained extra health: " + hpReward + " and attackDamage: " + attackDamageReward + "!";
                 }

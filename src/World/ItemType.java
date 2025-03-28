@@ -1,5 +1,5 @@
 package World;
 
 public enum ItemType {
-    WEAPON, HEAL, LOG, CARD
+    WEAPON, HEAL, LOG, CARD, FINALITEM
 }

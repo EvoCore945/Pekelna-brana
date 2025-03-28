@@ -1,7 +1,4 @@
 package characters;
-
-import command.Command;
-
 import java.util.HashMap;
 
 public class NPC {

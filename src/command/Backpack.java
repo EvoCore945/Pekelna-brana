@@ -1,13 +1,13 @@
 package command;
-
 import World.Item;
 import World.ItemType;
+import World.WorldMap;
 import characters.Player;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Backpack extends Command {
+    WorldMap worldMap;
     private static ArrayList<Item> backpack = new ArrayList<>();
 
     public static ArrayList<Item> getBackpack() {
@@ -54,6 +54,7 @@ public class Backpack extends Command {
 
     public void useItem(Scanner sc) {
 
+        int currentPosition = WorldMap.getCurrentPosition();
         showBackpack();
         System.out.println("Enter the number of the item you want to use:");
 
@@ -82,13 +83,18 @@ public class Backpack extends Command {
             int bonusHealth = Player.getInstance().getHealth() + selectedItem.getBonusHealth();
             Player.getInstance().setHealth(Player.getInstance().getHealth() + selectedItem.getBonusHealth());
             backpack.remove(index);
-            System.out.println("Health restored to" + Player.getInstance().getHealth());
+            System.out.println("Health restored to " + Player.getInstance().getHealth());
         } else if (selectedItem.getType().equals(ItemType.WEAPON)) {
             Player.getInstance().setAttackDamage(Player.getInstance().getAttackDamage() + selectedItem.getBonusDamage());
             backpack.remove(index);
             System.out.println("Attack damage increased to " + Player.getInstance().getAttackDamage());
         }
+        if(selectedItem.getType().equals(ItemType.FINALITEM) && currentPosition == 8 ){
+            System.out.println("You successfully placed Electro Stabilizer into the Portal device...");
+            System.out.println("CONGRATULATIONS! YOU HAVE CLOSED THE PORTAL AND SAVED THE STATION!");
+            End.exit = true;
 
+        }
     }
         @Override
         public boolean exit () {
