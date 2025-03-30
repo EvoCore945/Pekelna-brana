@@ -8,14 +8,17 @@ public class Item {
     private String name;
     private String description;
     private ItemType type;
-    private final int bonusHealth = rd.nextInt(10,20);
-    private final int bonusDamage = rd.nextInt(5,10);
+    private final int bonusHealth = rd.nextInt(10, 20);
+    private final int bonusDamage = rd.nextInt(5, 10);
+    boolean isLOG;
 
 
-    public Item(String name, String description, ItemType type) {
+    public Item(String name, String description, ItemType type, boolean isLOG) {
         this.name = name;
+
         this.description = description;
         this.type = type;
+        this.isLOG = isLOG;
     }
 
     public String getName() {
@@ -26,8 +29,22 @@ public class Item {
         return type;
     }
 
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
+
         return description;
+    }
+
+    public void setDescription() {
+        this.description = description;
+    }
+
+    public void setType(ItemType type) {
+        this.type = type;
     }
 
     public int getBonusHealth() {
@@ -38,9 +55,12 @@ public class Item {
         return bonusDamage;
     }
 
+    public boolean isLOG() {
+        return isLOG;
+    }
+
     @Override
     public String toString() {
-        return "Item name = " + name  + ", " + description + ", type = " + type;
+        return "Item name = " + name +", type = " + type;
     }
 }
-

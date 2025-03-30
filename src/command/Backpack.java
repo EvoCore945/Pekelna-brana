@@ -48,7 +48,12 @@ public class Backpack extends Command {
 
         System.out.println("These are the items in your backpack:");
         for (int i = 0; i < backpack.size(); i++) {
-            System.out.println((i + 1) + ". " + backpack.get(i).getName() + " - " + backpack.get(i).getDescription());
+            if(!backpack.get(i).isLOG()){
+                System.out.println((i + 1) + ". " + backpack.get(i).getName() + " - " + backpack.get(i).getDescription());
+            }else{
+                System.out.println((i + 1) + ". " + backpack.get(i).getName());
+            }
+
         }
     }
 
@@ -71,13 +76,13 @@ public class Backpack extends Command {
             System.out.println("Invalid selection");
         }
 
-
         Item selectedItem = backpack.get(index);
         if(selectedItem.getType().equals(ItemType.CARD)){
             System.out.println("Cards are already used.");
         }
         if(selectedItem.getType().equals(ItemType.LOG)){
-            selectedItem.toString();
+            System.out.println("Reading log:");
+            System.out.println(selectedItem.getDescription());
         }
         if (selectedItem.getType().equals(ItemType.HEAL)) {
             int bonusHealth = Player.getInstance().getHealth() + selectedItem.getBonusHealth();

@@ -2,9 +2,11 @@ package characters;
 
 import command.Backpack;
 
+import java.util.Scanner;
+
 public class Player {
 
-    private String name = "Player";
+    private String name;
     private int health = 100;
     private static Player instance = new Player();
     private int attackDamage = 15;
@@ -50,7 +52,7 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" + "name='" + name + '\'' + ", health=" + health + ", attackDamage=" + attackDamage + '}';
+        return "Name = " + name + "\n Health = " + health + "\n AttackDamage = " + attackDamage;
     }
 }
 

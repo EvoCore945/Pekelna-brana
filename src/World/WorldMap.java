@@ -102,12 +102,12 @@ public class WorldMap {
     public void initialzizeMonsters() {
         Monster.addMonster(2, new Monster("RudyDemon", rd.nextInt(10, 30), rd.nextInt(5,10) ));
         Monster.addMonster(6, new Monster("Mutant", rd.nextInt(30,50), rd.nextInt(10,15)));
-        Monster.addMonster(4, new Monster("Vidlicka", rd.nextInt(50,100), rd.nextInt(20,25)));
-        Monster.addMonster(7, new Monster("OmegaX-07 (Boss)", 200, 70));
+        Monster.addMonster(4, new Monster("Vidlicka", rd.nextInt(50,80), rd.nextInt(20,25)));
+        Monster.addMonster(7, new Monster("OmegaX-07 (Boss)", 150, 50));
     }
     public void initializeNPCs() {
-        NPC.addNPC(6,new NPC("DR.Caldwell", "Hi, I am a doctor who have worked here before the chaos happened. You have to find a key to close the Portal beetween ours and their dark world. I believe you will find the key in the section X0-7, but I am always hearing some strange sounds from there. THERE MIGHT BE SOMETHING... Anyway here is level 3 access card."));
-        NPC.addNPC(2,new NPC("Soldier", "Go away please! They are everywhere!! You have to go.. Take this shotgun..You will need it...uhh.."));
+        NPC.addNPC(6,new NPC("DR.Caldwell", "Hi, I am a doctor who have worked here before the chaos happened.\nYou have to find a key to close the Portal between ours and their dark world.\n I believe you will find the key in the section X0-7, but I am always hearing some strange sounds from there.\n THERE MIGHT BE SOMETHING... Anyway here is level 3 access card."));
+        NPC.addNPC(2,new NPC("Soldier", "Go away please!\nThey are everywhere!!\nYou have to go... \nTake this shotgun...\nYou will need it...uhh.."));
 
     }
 

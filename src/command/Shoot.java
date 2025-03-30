@@ -45,14 +45,14 @@ public class Shoot extends Command {
                 if(monster.getHealth() <= 0){
                     int hpReward = random.nextInt(10,20);
                     int attackDamageReward = random.nextInt(5,10);
-
+                    System.out.println("----------------------------------------------------------------");
                     System.out.println("You have won!");
                     player.setHealth(player.getHealth() + hpReward);
                     player.setAttackDamage(player.getAttackDamage() + attackDamageReward);
 
                     if(monster.getName().equals("OmegaX-07 (Boss)")){
                         System.out.println("The Final BOSS has been defeated! He dropped Electro Stabilizer!");
-                        Backpack.addItemToBackpack(new Item("Electro Stabilizer", "Use it to shut down the Portal in Portalova Komora and end this madness!",FINALITEM));
+                        Backpack.addItemToBackpack(new Item("Electro Stabilizer", "Use it to shut down the Portal in Portalova Komora and end this madness!",FINALITEM,false));
                     }
                     Monster.removeMonster(currentPosition);
                     return "You have gained extra health: " + hpReward + " and attackDamage: " + attackDamageReward + "!";

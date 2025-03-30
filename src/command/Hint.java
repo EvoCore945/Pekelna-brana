@@ -13,12 +13,13 @@ public class Hint extends Command {
                 - go [direction] --> move to the location
                 - backpack --> show or use your items in backpack
                 - hint --> all commands
+                - help --> if you are lost
+                - player --> your stats
                 - examine [room] --> search the room for items
                 - pickUp [item] --> pick up a item
                 - talk [NPC] --> talk with NPC
                 - shoot [Enemy] --> Start the fight with a monster
                 - end [PekelnaBrana] --> Close the game
-                - prinfo --> information about you
                 
                 """
                     ;
