@@ -4,6 +4,9 @@ public class End extends Command {
 
     public static boolean exit;
 
+    /**
+     * Ends the game.
+     */
     public String execute(){
         setExit(true);
         return "Exiting the game.";

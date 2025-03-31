@@ -7,6 +7,9 @@ public class Hint extends Command {
     private Location location;
 
     @Override
+    /**
+     * Writes all the available commands
+     */
     public String execute() {
             return """
                 Commands you can type:
@@ -20,7 +23,6 @@ public class Hint extends Command {
                 - talk [NPC] --> talk with NPC
                 - shoot [Enemy] --> Start the fight with a monster
                 - end [PekelnaBrana] --> Close the game
-                
                 """
                     ;
         }

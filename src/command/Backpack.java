@@ -13,10 +13,18 @@ public class Backpack extends Command {
     public static ArrayList<Item> getBackpack() {
         return backpack;
     }
+
+    /**
+     * Adds item to backpack.
+     */
     public static void addItemToBackpack(Item item){
         backpack.add(item);
     }
 
+    /**
+     * Allows player to interact with their backpack
+     * It checks if the backpack is empty, then provides options to list all items or use a specific item.
+     */
     public String execute() {
         Scanner sc = new Scanner(System.in);
 
@@ -43,7 +51,9 @@ public class Backpack extends Command {
         return "";
     }
 
-
+    /**
+     * Shows all the items in the backpack
+     */
     public void showBackpack() {
 
         System.out.println("These are the items in your backpack:");
@@ -57,6 +67,9 @@ public class Backpack extends Command {
         }
     }
 
+    /**
+     * Checks the type of the selected item and then uses it
+     */
     public void useItem(Scanner sc) {
 
         int currentPosition = WorldMap.getCurrentPosition();
@@ -98,9 +111,11 @@ public class Backpack extends Command {
             System.out.println("You successfully placed Electro Stabilizer into the Portal device...");
             System.out.println("CONGRATULATIONS! YOU HAVE CLOSED THE PORTAL AND SAVED THE STATION!");
             End.exit = true;
-
+        }else{
+            System.out.println("You have to be in a portal room !");
         }
     }
+
         @Override
         public boolean exit () {
             return false;

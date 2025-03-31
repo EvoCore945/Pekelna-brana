@@ -10,6 +10,10 @@ public class Talk extends Command{
     public Talk() {
     }
 
+    /**
+     * Checks if the NPC is in the room
+     * If true - writes down NPC dialog
+     */
     @Override
     public String execute() {
         int currentPosition = WorldMap.getCurrentPosition();

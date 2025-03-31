@@ -30,21 +30,9 @@ public class Item {
     }
 
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
 
         return description;
-    }
-
-    public void setDescription() {
-        this.description = description;
-    }
-
-    public void setType(ItemType type) {
-        this.type = type;
     }
 
     public int getBonusHealth() {

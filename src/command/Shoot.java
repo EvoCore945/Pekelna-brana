@@ -14,6 +14,13 @@ public class Shoot extends Command {
     private boolean isDead = false;
     Random random = new Random();
 
+    /**
+     * Handles combat when the player encounters a monster.
+     * It presents the choice to fight or escape.
+     * Runs a turn-based battle if the player fights, and updates health and attack damage.
+     * If the player wins, they receive rewards, and the final boss drops a key item.
+     * If player dies the game ends.
+     */
     public String execute() {
         Scanner sc = new Scanner(System.in);
         int currentPosition = WorldMap.getCurrentPosition();

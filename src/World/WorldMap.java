@@ -1,8 +1,6 @@
 package World;
 import characters.Monster;
 import characters.NPC;
-import characters.Player;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,7 +18,9 @@ public class WorldMap {
     public static boolean permission4 = false;
     public static boolean permission5 = false;
 
-
+    /**
+     * Loads all the rooms on the map from a file
+     */
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/map.txt"))) {
             String part;
@@ -51,6 +51,11 @@ public class WorldMap {
 
     }
 
+    /**
+     * Processes player movement by checking the given direction and verifying if movement is allowed and ensuring the player has the necessary permissions for restricted areas
+     * If valid, it updates the player's position; otherwise, it returns an appropriate error message.
+     * author: ChatGPT
+     */
     public String move(String direction) {
         int indexOFdirection;
         switch (direction.toLowerCase()) {
@@ -99,12 +104,19 @@ public class WorldMap {
 
     Random rd = new Random();
 
+    /**
+     * Adds various monsters to specific locations with randomized health and damage values
+     */
     public void initialzizeMonsters() {
         Monster.addMonster(2, new Monster("RudyDemon", rd.nextInt(10, 30), rd.nextInt(5,10) ));
         Monster.addMonster(6, new Monster("Mutant", rd.nextInt(30,50), rd.nextInt(10,15)));
         Monster.addMonster(4, new Monster("Vidlicka", rd.nextInt(50,80), rd.nextInt(20,25)));
         Monster.addMonster(7, new Monster("OmegaX-07 (Boss)", 150, 50));
     }
+
+    /**
+     * Adds NPCs with predefined dialogue to certain locations.
+     */
     public void initializeNPCs() {
         NPC.addNPC(6,new NPC("DR.Caldwell", "Hi, I am a doctor who have worked here before the chaos happened.\nYou have to find a key to close the Portal between ours and their dark world.\n I believe you will find the key in the section X0-7, but I am always hearing some strange sounds from there.\n THERE MIGHT BE SOMETHING... Anyway here is level 3 access card."));
         NPC.addNPC(2,new NPC("Soldier", "Go away please!\nThey are everywhere!!\nYou have to go... \nTake this shotgun...\nYou will need it...uhh.."));

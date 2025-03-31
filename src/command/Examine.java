@@ -30,11 +30,17 @@ public class Examine extends Command {
         return "";
 
     }
-    public void ItemsInRoom(){
-        int currentPosition = WorldMap.getCurrentPosition();
-        if(!roomItems.containsKey(currentPosition)){
-            ArrayList<Item> items = new ArrayList<>();
-
+    /**
+ * Manages the items in the current room based on the player's position.
+ * This method populates the room with items if it hasn't been visited before,
+ * adds the items to the player's backpack, and updates the game state accordingly.
+ * It also handles special cases for each room, such as granting permissions or
+ * displaying specific logs.
+ */
+public void ItemsInRoom() {
+    int currentPosition = WorldMap.getCurrentPosition();
+    if(!roomItems.containsKey(currentPosition)){
+        ArrayList<Item> items = new ArrayList<>();
 
         switch (currentPosition) {
             case 0 :
@@ -47,6 +53,7 @@ public class Examine extends Command {
                 break;
 
             case 2 :
+                System.out.println("There could be someone in this room you could talk to...");
                 items.add( new Item("Shotgun", "Increases your damage when used", WEAPON,false));
 
                 break;
@@ -81,7 +88,7 @@ public class Examine extends Command {
                 break;
 
             case 7 :
-                items.add(new Item("LOG-Entry#3","I can hear them... screams echo through the corridors.\nThe emergency systems are failing one by one.\nI don’t know how much time I have left, but if anyone finds this log... \nThe ELECTRO STABILIZER is the KEY to close the portal!", LOG,true));
+                items.add(new Item("LOG-Entry#3","I can hear them... screams echo through the corridors.\nThe emergency systems are failing one by one.\nI don't know how much time I have left, but if anyone finds this log... \nThe ELECTRO STABILIZER is the KEY to close the portal!", LOG,true));
                 items.add(new Item("MedKit", "Increases your health when used", HEAL,false));
                 items.add( new Item("SMG", "Increases your damage when used", WEAPON,false));
                 items.add( new Item("RocketLauncher", "Increases your damage when used", WEAPON,false));
@@ -94,20 +101,20 @@ public class Examine extends Command {
                 return;
         }
         roomItems.put(currentPosition,items);
-        }
-
-        ArrayList<Item> itemsInRooms = roomItems.get(currentPosition);
-
-            if (itemsInRooms != null && !itemsInRooms.isEmpty()){
-                for (Item item : new ArrayList<>(itemsInRooms)) {
-                    Backpack.addItemToBackpack(item);
-                    System.out.println(item + " > > > was added to your backpack!");
-                }
-                itemsInRooms.clear();
-        }else{
-                System.out.println("There are no items left in this room.");
-            }
     }
+
+    ArrayList<Item> itemsInRooms = roomItems.get(currentPosition);
+
+    if (itemsInRooms != null && !itemsInRooms.isEmpty()){
+        for (Item item : new ArrayList<>(itemsInRooms)) {
+            Backpack.addItemToBackpack(item);
+            System.out.println(item + " > > > was added to your backpack!");
+        }
+        itemsInRooms.clear();
+    }else{
+        System.out.println("There are no items left in this room.");
+    }
+}
     public boolean exit() {
         return false;
     }
