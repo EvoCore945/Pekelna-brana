@@ -52,7 +52,8 @@ public class Backpack extends Command {
     }
 
     /**
-     * Shows all the items in the backpack
+     * Displays all the items currently in the backpack.
+     * For each item, it prints the item number, name, and description (if not a LOG item).
      */
     public void showBackpack() {
 
@@ -63,12 +64,13 @@ public class Backpack extends Command {
             }else{
                 System.out.println((i + 1) + ". " + backpack.get(i).getName());
             }
-
         }
     }
 
     /**
      * Checks the type of the selected item and then uses it
+     * First it displays the backpack contents, then prompts the user to select an item.
+     * The effect of using the item depends on its type (CARD, LOG, HEAL, WEAPON, or FINALITEM).
      */
     public void useItem(Scanner sc) {
 
@@ -111,7 +113,7 @@ public class Backpack extends Command {
             System.out.println("You successfully placed Electro Stabilizer into the Portal device...");
             System.out.println("CONGRATULATIONS! YOU HAVE CLOSED THE PORTAL AND SAVED THE STATION!");
             End.exit = true;
-        }else{
+        }else if(selectedItem.getType().equals(ItemType.FINALITEM) && currentPosition != 8){
             System.out.println("You have to be in a portal room !");
         }
     }

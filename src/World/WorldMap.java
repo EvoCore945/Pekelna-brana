@@ -20,6 +20,7 @@ public class WorldMap {
 
     /**
      * Loads all the rooms on the map from a file
+     * author Michaela Meitnerová
      */
     public boolean loadMap() {
         try (BufferedReader br = new BufferedReader(new FileReader("src/map.txt"))) {

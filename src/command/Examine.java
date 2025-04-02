@@ -7,6 +7,9 @@ import java.util.HashMap;
 
 import static World.ItemType.*;
 
+/**
+ *Represents the Examine command in the game, which allows the player to inspect their current location.
+ */
 public class Examine extends Command {
 
     private Location location;
@@ -18,6 +21,10 @@ public class Examine extends Command {
         this.location = location;
     }
 
+    /**
+     * Executes the Examine command, displaying the current location and managing items in the room.
+     * @return A string message, empty if successful, or "Unknown location." if the current position is null.
+     */
     public String execute() {
         System.out.println("You are in: " + world.getCurrentPosition2() + ". ");
 

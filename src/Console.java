@@ -60,7 +60,7 @@ private void initializeCommands() {
         Player player = Player.getInstance();
         player.setName(playerName);
         initializeCommands();
-        introductiontext();
+        //introductiontext();
         System.out.println("Welcome to The Pekelna Brana!");
         System.out.println("Type 'hint' to see available commands.");
 
